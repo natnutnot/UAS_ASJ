@@ -1,0 +1,52 @@
+<div class="modal fade" id="addManhwaModal" tabindex="-1" aria-labelledby="addManhwaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="{{ url_for('add') }}" method="POST" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addManhwaModalLabel">Tambah Manhwa Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Judul</label>
+              <input type="text" name="title" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Genre</label>
+              <input type="text" name="genre" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Rating (1–5)</label>
+              <input type="number" name="rating" class="form-control" min="1" max="5" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select" required>
+                <option value="Completed">Completed</option>
+                  <option value="Ongoing">Ongoing</option>
+                  <option value="Want to Read">Want to Read</option>
+                  <option value="Dropped">Dropped</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Upload Gambar</label>
+              <input type="file" name="image" class="form-control" accept="image/*" required>
+              <small class="text-muted">Format: .png, .jpg, .jpeg, .gif (max 2MB)</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

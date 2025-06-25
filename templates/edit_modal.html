@@ -1,0 +1,54 @@
+<div class="modal fade" id="editModal{{ manhwa[0] }}" tabindex="-1" aria-labelledby="editModalLabel{{ manhwa[0] }}" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="{{ url_for('update', id=manhwa[0]) }}" method="POST" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel{{ manhwa[0] }}">Ubah Manhwa - {{ manhwa[1] }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Judul</label>
+              <input type="text" name="title" class="form-control" value="{{ manhwa[1] }}" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Genre</label>
+              <input type="text" name="genre" class="form-control" value="{{ manhwa[2] }}" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Rating (1–5)</label>
+              <input type="number" name="rating" class="form-control" min="1" max="5" value="{{ manhwa[3] }}" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select" required>
+                <option value="Completed" {% if manhwa[4] == 'Completed' %}selected{% endif %}>Completed</option>
+                <option value="Ongoing" {% if manhwa[4] == 'Ongoing' %}selected{% endif %}>Ongoing</option>
+                <option value="Want to Read" {% if manhwa[4] == 'Want to Read' %}selected{% endif %}> Want to Read</option>
+                <option value="Dropped" {% if manhwa[4] == 'Dropped' %}selected{% endif %}>Dropped</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Ganti Gambar (Opsional)</label>
+              <input type="file" name="image" class="form-control" accept="image/*">
+              {% if manhwa[5] %}
+              <small class="text-muted">Gambar saat ini: {{ manhwa[5] }}</small>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
