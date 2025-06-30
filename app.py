@@ -4,12 +4,10 @@ from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 
-# Memuat environment variables dari file .env
 load_dotenv()
 
 app = Flask(__name__)
 
-# --- KONFIGURASI APLIKASI ---
 app.secret_key = os.getenv('SECRET_KEY')
 app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
@@ -26,7 +24,7 @@ mysql = MySQL(app)
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def index():
@@ -45,14 +43,12 @@ def add():
         status = request.form['status']
 
         if 'image' not in request.files:
-            # FIX: Terjemahan pesan notifikasi
             flash('Tidak ada bagian file yang diunggah.')
             return redirect(request.url)
         
         file = request.files['image']
 
         if file.filename == '':
-            # FIX: Terjemahan pesan notifikasi
             flash('Tidak ada file yang dipilih.')
             return redirect(request.url)
 
@@ -99,7 +95,6 @@ def edit_form(id):
     data = cur.fetchone()
     cur.close()
     if data:
-        # Menggunakan template edit_modal.html yang sudah diperbaiki
         return render_template('edit_form.html', manhwa=data)
     return 'Data tidak ditemukan!', 404
 

@@ -1,6 +1,5 @@
 FROM python:3.11-bullseye
 
-# Install system dependencies untuk mysqlclient
 RUN apt-get update && apt-get install -y \
     gcc \
     default-libmysqlclient-dev \
